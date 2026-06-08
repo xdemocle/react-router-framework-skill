@@ -24,17 +24,18 @@ Triggered when:
 
 | Project | Path | RR version | Notes |
 |---|---|---|---|
-| **theweb3-ninja-website** | `~/Documents/theweb3-ninja-website/` | 7.13.1 | Marketing site, layouts, splat routes, CF plugin conflict in dev |
-| **code-connect-sa** | `~/Documents/code-connect-sa/` | RR7 (see `package.json`) | `ssr: false`, static prerender, magic-link auth, `appDirectory: "src"` |
-| **rocco-s-realm** | `~/Documents/rocco-s-realm/` | 7.15.1 | MDX, dynamic prerender, splat catchall |
+| **theweb3-ninja-website** | `~/Documents/theweb3-ninja-website/` (srv2) | 7.13.1 | Marketing site, layouts, splat routes, CF plugin conflict in dev |
+| **code-connect-sa** | `~/Documents/code-connect-sa/` (srv2+srv3) | RR7 (see `package.json`) | `ssr: false`, static prerender, magic-link auth, `appDirectory: "src"` |
+| **rocco-s-realm** | `~/Documents/rocco-s-realm/` (srv2+srv3) | 7.15.1 | MDX, dynamic prerender, splat catchall |
+| **agrilink** | `~/Documents/agrilink/` (srv3) | 7.17.0 | 11-lang i18n, CF Workers + Rolldown CJS patch, MDX, all v8 flags |
+| **bzz-one-app** | GitHub `xdemocle/bzz-one-app` (not on servers) | 7.13.0 | File-system routing, `($lng)` i18n prefix, framer-motion, vitest in workerd |
+| **veritas-harvest** (Tracva) | GitHub `xdemocle/veritas-harvest` (Lovable-managed, read-only) | 7.13.1 | IT/EN route IDs, country landing pages, TanStack Query, custom middleware |
 
-**NOT on srv2 (likely on srv3, Rocco's laptop, or already on CF Pages without local checkout):**
-- Eveo (canonical: `eveo-marketplace-app`)
-- bzz.one
-- CyberGrandpa (`cybergrandpa.top`, `.space`)
-- Tracva (`tracva.work`)
+**NOT yet cached (no accessible codebase):**
+- **Eveo** — no public GitHub repo, no server checkout. The `eveo-marketplace-app` reference in this skill is a logical name, not a real repo.
+- **CyberGrandpa website** (`cybergrandpa.top`, `.space`) — only the WEXT/Svelte browser extension is public (`cybergrandpa-web-extension-antifraud`). The website itself is elsewhere.
 
-When those land on this server, add cache files under `references/projects/`. Until then, treat their stack as "RR7 framework + CF Workers" by default and consult `references/deploying.md`.
+When Eveo and the CyberGrandpa website become accessible, add cache files under `references/projects/`. Until then, treat their stack as "RR7 framework + CF Workers" by default and consult `references/deploying.md`.
 
 ---
 
@@ -67,6 +68,9 @@ Read these when the question matches:
 | `references/projects/theweb3-ninja-website.md` | Routes, config, pitfall (CF plugin dev conflict) | Working on theweb3-ninja-website |
 | `references/projects/code-connect-sa.md` | Routes, `ssr:false` + prerender + magic-link auth | Working on code-connect-sa |
 | `references/projects/rocco-s-realm.md` | Routes, MDX, dynamic prerender, splat catchall | Working on rocco-s-realm |
+| `references/projects/agrilink.md` | 11-lang i18n, CF Rolldown CJS patch, MDX, all v8 flags | Working on agrilink |
+| `references/projects/bzz-one-app.md` | File-system routing, `($lng)` i18n, framer-motion, vitest in workerd | Working on bzz-one-app |
+| `references/projects/veritas-harvest.md` | IT/EN route IDs, country SEO pages, TanStack Query, custom middleware | Working on veritas-harvest (Tracva) |
 
 ---
 
