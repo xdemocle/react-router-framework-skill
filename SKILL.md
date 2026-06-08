@@ -20,15 +20,21 @@ Triggered when:
 
 ---
 
-## Rocco's stack — known RR7 projects (June 2026)
+## Rocco's RR7 projects (cached patterns, June 2026)
 
-| Project | Stack | Reference |
-|---|---|---|
-| **Eveo** | RR7 framework + Cloudflare Workers + Tailwind v4 | Canonical reference: `eveo-marketplace-app` |
-| **bzz.one** | RR7 framework + CF Workers | |
-| **CyberGrandpa** | RR7 framework + CF Pages | `cybergrandpa.top`, `.space` |
-| **Tracva** | RR7 framework (in progress) | `tracva.work` |
-| **Claudio Face** | Static SPA via Vite (NOT RR7) | Skip this skill |
+| Project | Path | RR version | Notes |
+|---|---|---|---|
+| **theweb3-ninja-website** | `~/Documents/theweb3-ninja-website/` | 7.13.1 | Marketing site, layouts, splat routes, CF plugin conflict in dev |
+| **code-connect-sa** | `~/Documents/code-connect-sa/` | RR7 (see `package.json`) | `ssr: false`, static prerender, magic-link auth, `appDirectory: "src"` |
+| **rocco-s-realm** | `~/Documents/rocco-s-realm/` | 7.15.1 | MDX, dynamic prerender, splat catchall |
+
+**NOT on srv2 (likely on srv3, Rocco's laptop, or already on CF Pages without local checkout):**
+- Eveo (canonical: `eveo-marketplace-app`)
+- bzz.one
+- CyberGrandpa (`cybergrandpa.top`, `.space`)
+- Tracva (`tracva.work`)
+
+When those land on this server, add cache files under `references/projects/`. Until then, treat their stack as "RR7 framework + CF Workers" by default and consult `references/deploying.md`.
 
 ---
 
@@ -58,6 +64,9 @@ Read these when the question matches:
 | `references/type-safety.md` | `.react-router/types/`, `Route.*` types, typegen setup | TypeScript errors involving `Route.` |
 | `references/deploying.md` | Templates per platform, CF Workers external link | Deployment decisions |
 | `references/changelog.md` | v7.0.0 → v7.17.0 highlights | "Is this feature available?" / "What changed in 7.x?" |
+| `references/projects/theweb3-ninja-website.md` | Routes, config, pitfall (CF plugin dev conflict) | Working on theweb3-ninja-website |
+| `references/projects/code-connect-sa.md` | Routes, `ssr:false` + prerender + magic-link auth | Working on code-connect-sa |
+| `references/projects/rocco-s-realm.md` | Routes, MDX, dynamic prerender, splat catchall | Working on rocco-s-realm |
 
 ---
 
