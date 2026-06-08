@@ -20,6 +20,29 @@ Triggered when:
 
 ---
 
+## Step 0 — Semantic search the docs first
+
+Before scrolling reference tables, run the semantic search CLI. It embeds the question, scores it against pre-computed embeddings of every doc chunk, and returns the most relevant sections. Beats fuzzy string matching on heading text.
+
+```sh
+node ~/.openclaw/skills/react-router/scripts/search.mjs --top 5 --format text "<the user's question>"
+```
+
+- Output is the top-K chunks (`path › heading (score)` + body).
+- Use the returned `path` values to know which reference file to Read in full when you need more context than the chunk gives you.
+- Query embeddings are cached in `embeddings/query-cache.json`, so repeat questions cost ~120 ms with no API call.
+- Use `--format json` from agents that want structured results.
+
+If `embeddings/index.json` is missing, rebuild it:
+```sh
+OPENAI_API_KEY=... node ~/.openclaw/skills/react-router/scripts/build-embeddings.mjs
+```
+Build is incremental: chunks are keyed by SHA-1 of their text, so editing one reference re-embeds only that section. Force a full rebuild with `--rebuild`.
+
+Model: `text-embedding-3-small` (1536 dims, 121 chunks ≈ 3.5 MB index, ~$0.000003 per doc rebuild).
+
+---
+
 ## Rocco's RR7 projects (cached patterns, June 2026)
 
 | Project | Path | RR version | Notes |
@@ -225,6 +248,7 @@ Daily cron (rr7-changelog-watch):
 - Schedule: 02:00 Europe/Rome (quiet slot, no medicine overlap).
 - Source: `web_fetch` against `https://raw.githubusercontent.com/remix-run/react-router/main/CHANGELOG.md`.
 - Action: re-write `references/changelog.md`; surface any new stable features in this SKILL.md's "Stable vs. unstable" table.
+- After any reference file is rewritten, run `node scripts/build-embeddings.mjs` so the semantic index picks up the new content. The build is incremental — unchanged chunks are reused.
 
 ---
 
