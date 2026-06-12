@@ -246,9 +246,11 @@ This skill has a daily cron that re-fetches the CHANGELOG and the streaming + ty
 
 Daily cron (rr7-changelog-watch):
 - Schedule: 02:00 Europe/Rome (quiet slot, no medicine overlap).
-- Source: `web_fetch` against `https://raw.githubusercontent.com/remix-run/react-router/main/CHANGELOG.md`.
-- Action: re-write `references/changelog.md`; surface any new stable features in this SKILL.md's "Stable vs. unstable" table.
-- After any reference file is rewritten, run `node scripts/build-embeddings.mjs` so the semantic index picks up the new content. The build is incremental — unchanged chunks are reused.
+- Script: `node scripts/update-changelog.mjs` — run it directly, do NOT use `git` or clone the repo.
+  - Fetches latest CHANGELOG from GitHub raw URL.
+  - Parses last 15 version sections, writes `references/changelog.md` in-place.
+  - Runs `scripts/build-embeddings.mjs` incrementally afterwards.
+- IMPORTANT: The skill dir is at `~/.openclaw/skills/react-router/` and is a git repo. Do NOT `rm -rf`, `git clone`, `git checkout`, or otherwise rewrite the directory. Only modify `references/changelog.md` and `embeddings/index.json` in-place.
 
 ---
 
